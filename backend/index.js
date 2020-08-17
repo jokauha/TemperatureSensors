@@ -1,18 +1,35 @@
 var mqtt = require('mqtt')
 var client  = mqtt.connect('mqtt://10.69.69.70')
 
+const express = require('express')
+
+const app = express()
+
+app.get('/', (req, res) => {
+  res.send('<h1>Hello World!</h1>')
+})
+
+app.get('/api/temps', (req, res) => {
+  TemperatureModel.findAll().then( (temps) => res.json(temps) )
+})
+
+const port = 3001
+app.listen(port, () => {
+  console.log('Server running on port ' + port)
+})
+
 var temps = []
 var tempname
 
-client.on('connect', function () {
-  client.subscribe('muenster/#', function (err) {
+client.on('connect', () => {
+  client.subscribe('muenster/#', (err) => {
     if (!err) {
       client.publish('presence', 'Hello mqtt')
     }
   })
 })
 
-client.on('message', function (topic, message) {
+client.on('message', (topic, message) => {
   // message is Buffer
   // console.log(topic.toString() + ': ' + message.toString())
   if(topic.includes('temp')) {
