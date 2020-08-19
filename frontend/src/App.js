@@ -2,78 +2,65 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import './App.css';
 import '../node_modules/react-vis/dist/style.css';
+import Plot from './components/Plot'
 
-import {
-  XYPlot,
-  XAxis,
-  YAxis,
-  ChartLabel,
-  HorizontalGridLines,
-  VerticalGridLines,
-  LineSeries
-} from 'react-vis';
+
 
 function App() {
 
   const [ outsideTemps, setOutsideTemps ] = useState([])
+  const [ insideTemps, setInsideTemps ] = useState([])
+  const [ kitchenTemps, setKitchenTemps ] = useState([])
+  const [ fridgeTemps, setFridgeTemps ] = useState([])
+  const [ bathroomTemps, setBathroomTemps ] = useState([])
 
-  const outsideTempCollector = (props) => {  // Kerää ulkolämpötilat
-    var outTemps = []
-    //console.log(props)
-    props.forEach((observation) => {
-      if(observation.name === 'ulko') {
-        outTemps.push({x: Date.parse(observation.date), y: observation.temperature})
+  const tempCollector = ( data, sensor, setter ) => {  // Kerää lämpötilat
+    var chosenTemps = []
+
+    data.forEach((observation) => {
+      if(observation.name === sensor) {
+        chosenTemps.push({x: Date.parse(observation.date), y: observation.temperature})
       }
     })
     //console.log(outTemps)
-    setOutsideTemps(outTemps)
+    setter(chosenTemps)
+  }
+
+  const getCurrentTemp = (data) => {
+    const filteredData = data.filter(item=> item !== undefined)
+    filteredData.sort((a,b) => a.date-b.date)
+    if(filteredData[filteredData.length - 1] !== undefined) {
+      return filteredData[filteredData.length - 1].y
+    }
+    
   }
 
   useEffect(() => {
     axios.get('http://localhost:3001/api/temps')
       .then(response => {
-        outsideTempCollector(response.data)
+        tempCollector(response.data, 'ulko', setOutsideTemps)
+        tempCollector(response.data, 'olohuone', setInsideTemps)
+        tempCollector(response.data, 'keittio', setKitchenTemps)
+        tempCollector(response.data, 'jaakaappi', setFridgeTemps)
+        tempCollector(response.data, 'kylpyhuone', setBathroomTemps)
         //console.log(response.data)
       })
   }, [])
 
-    const Line = LineSeries;
-
     return (
-
       <div>
-
-        <XYPlot xType='time' width={1000} height={300}>
-          <HorizontalGridLines />
-          <VerticalGridLines />
-          <XAxis />
-          <YAxis />
-          <ChartLabel
-            text="X Axis"
-            className="alt-x-label"
-            includeMargin={false}
-            xPercent={0.025}
-            yPercent={1.01}
-            />
-
-          <ChartLabel
-            text="Y Axis"
-            className="alt-y-label"
-            includeMargin={false}
-            xPercent={0.06}
-            yPercent={0.06}
-            style={{
-              transform: 'rotate(-90)',
-              textAnchor: 'end'
-            }}
-            />
-          <Line
-            className="Ulkolämpötila"
-            data={outsideTemps}
-          />
-        </XYPlot>
+        <div className='sideBySide'>
+          <Plot tempData={outsideTemps} current={getCurrentTemp(outsideTemps)} title={'Ulkolämpötila'} />
+          <Plot tempData={insideTemps} current={getCurrentTemp(insideTemps)} title={'Sisälämpötila'} />
+        </div>
+        <div className='sideBySide'>
+          <Plot tempData={kitchenTemps} current={getCurrentTemp(kitchenTemps)} title={'Keittiön lämpötila'} />
+          <Plot tempData={fridgeTemps} current={getCurrentTemp(fridgeTemps)} title={'Jääkaapin lämpötila'} />
+        </div>
+        <div className='sideBySide'>
+          <Plot tempData={bathroomTemps} current={getCurrentTemp(bathroomTemps)} title={'Kylpyhuoneen lämpötila'} />
+        </div>
       </div>
-
     );
 }
 
