@@ -47,8 +47,22 @@ client.on('message', (topic, message) => {
                 .replace("keittiojaakaappi", "jaakaappi")
 
     // temps.push({name: tempname, temperature: JSON.parse(message.toString()).temperature, date: new Date()})
-    TemperatureModel.create({name: tempname, temperature: JSON.parse(message.toString()).temperature, date: new Date()})
-      //.then(item=>(console.log("success " + item)))
+
+    if(JSON.parse(message.toString()).humidity !== undefined) {
+      TemperatureModel.create({
+        name: tempname,
+        temperature: JSON.parse(message.toString()).temperature,
+        humidity: JSON.parse(message.toString()).humidity,
+        pressure: JSON.parse(message.toString()).pressure,
+        date: new Date()})
+    }
+    else {
+      TemperatureModel.create({
+        name: tempname,
+        temperature: JSON.parse(message.toString()).temperature,
+        date: new Date()})
+        //.then(item=>(console.log("success " + item)))
+    }
   }
 
   console.log(temps)
@@ -72,6 +86,14 @@ TemperatureModel.init({
   temperature: {
     type: DataTypes.DECIMAL,
     allowNull: false
+  },
+  humidity: {
+    type: DataTypes.DECIMAL,
+    allowNull: true
+  },
+  pressure: {
+    type: DataTypes.DECIMAL,
+    allowNull: true
   },
   date: {
     type: DataTypes.DATE,
