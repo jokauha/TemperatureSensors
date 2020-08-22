@@ -1,0 +1,27 @@
+[
+  {
+  "name": "Keittiö",
+  "topic": "muenster/keittio/temp",
+  "type": "ds18b20"
+  },
+  {
+    "name": "Jääkaappi",
+    "topic": "muenster/keittio/jaakaappitemp",
+    "type": "ds18b20"
+  },
+  {
+    "name": "Suihku",
+    "topic": "muenster/kylpyhuone/temp",
+    "type": "bme280"
+  },
+  {
+    "name": "Olohuone",
+    "topic": "muenster/olohuone/temp",
+    "type": "bme280"
+  },
+  {
+    "name": "Ulkolämpötila",
+    "topic": "muenster/ulko/temp",
+    "type": "bme280"
+  }
+]
