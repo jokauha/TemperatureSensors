@@ -36,13 +36,13 @@ function App() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/temps')
+    axios.get('http://localhost:4001/api/temps')
       .then(response => {
-        tempCollector(response.data, 'ulko', setOutsideTemps)
-        tempCollector(response.data, 'olohuone', setInsideTemps)
-        tempCollector(response.data, 'keittio', setKitchenTemps)
-        tempCollector(response.data, 'jaakaappi', setFridgeTemps)
-        tempCollector(response.data, 'kylpyhuone', setBathroomTemps)
+        tempCollector(response.data, 'Ulkolämpötila', setOutsideTemps)
+        tempCollector(response.data, 'Olohuone', setInsideTemps)
+        tempCollector(response.data, 'Keittiö', setKitchenTemps)
+        tempCollector(response.data, 'Jääkaappi', setFridgeTemps)
+        tempCollector(response.data, 'Suihku', setBathroomTemps)
         //console.log(response.data)
       })
   }, [])
