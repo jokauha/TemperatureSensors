@@ -32,11 +32,10 @@ function App() {
     if(filteredData[filteredData.length - 1] !== undefined) {
       return filteredData[filteredData.length - 1].y
     }
-    
   }
 
   useEffect(() => {
-    axios.get('http://localhost:4001/api/temps')
+    axios.get('http://localhost:4001/api/temps/recent')
       .then(response => {
         tempCollector(response.data, 'Ulkolämpötila', setOutsideTemps)
         tempCollector(response.data, 'Olohuone', setInsideTemps)

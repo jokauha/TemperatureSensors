@@ -15,13 +15,23 @@
     "type": "bme280"
   },
   {
-    "name": "Olohuone",
+    "name": "Olohuone BME",
     "topic": "muenster/olohuone/temp",
     "type": "bme280"
   },
   {
-    "name": "Ulkolämpötila",
+    "name": "Olohuone",
+    "topic": "muenster/olohuone/onewiretemp",
+    "type": "ds18b20"
+  },
+  {
+    "name": "Ulkolämpötila BME",
     "topic": "muenster/ulko/temp",
     "type": "bme280"
+  },
+  {
+    "name": "Ulkolämpötila",
+    "topic": "muenster/ulko/temponewire",
+    "type": "ds18b20"
   }
 ]

@@ -19,6 +19,28 @@ app.get('/api/temps', (req, res) => {
   TemperatureModel.findAll().then( (temps) => res.json(temps) )
 })
 
+app.get('/api/temps/sensor/:name', (req, res) => {
+  const sensorName = req.params.name
+  TemperatureModel.findAll({
+    where: {
+      name: sensorName
+    }
+  })
+    .then( (temps) => res.json(temps) )
+})
+
+app.get('/api/temps/recent', (req, res) => {
+  const start = new Date(Date.now() - 86400 * 1000)
+  TemperatureModel.findAll({
+    where: {
+      date: {
+        [Op.gte]: start
+      }
+    }
+  })
+    .then( (temps) => res.json(temps) )
+})
+
 const port = 4001
 app.listen(port, () => {
   console.log('Server running on port ' + port)
@@ -98,6 +120,7 @@ const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './temperatures.sqlite'
 });
+const Op = Sequelize.Op
 
 class TemperatureModel extends Model {}
 
