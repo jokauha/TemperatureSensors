@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import './App.css';
 import '../node_modules/react-vis/dist/style.css';
-import Plot from './components/Plot'
-
-
+import { Plot1, Plot3 } from './components/Plot'
 
 function App() {
 
@@ -27,7 +25,7 @@ function App() {
   }
 
   const getCurrentTemp = (data) => {
-    const filteredData = data.filter(item=> item !== undefined)
+    const filteredData = data.filter(item => item !== undefined)
     filteredData.sort((a,b) => a.date-b.date)
     if(filteredData[filteredData.length - 1] !== undefined) {
       return filteredData[filteredData.length - 1].y
@@ -49,15 +47,16 @@ function App() {
     return (
       <div>
         <div className='sideBySide'>
-          <Plot tempData={outsideTemps} current={getCurrentTemp(outsideTemps)} title={'Ulkolämpötila'} />
-          <Plot tempData={insideTemps} current={getCurrentTemp(insideTemps)} title={'Sisälämpötila'} />
+          <Plot1 tempData={outsideTemps} current={getCurrentTemp(outsideTemps)} title={'Ulkolämpötila'} />
+          <Plot1 tempData={insideTemps} current={getCurrentTemp(insideTemps)} title={'Sisälämpötila'} />
         </div>
         <div className='sideBySide'>
-          <Plot tempData={kitchenTemps} current={getCurrentTemp(kitchenTemps)} title={'Keittiön lämpötila'} />
-          <Plot tempData={fridgeTemps} current={getCurrentTemp(fridgeTemps)} title={'Jääkaapin lämpötila'} />
+          <Plot1 tempData={kitchenTemps} current={getCurrentTemp(kitchenTemps)} title={'Keittiön lämpötila'} />
+          <Plot1 tempData={fridgeTemps} current={getCurrentTemp(fridgeTemps)} title={'Jääkaapin lämpötila'} />
         </div>
         <div className='sideBySide'>
-          <Plot tempData={bathroomTemps} current={getCurrentTemp(bathroomTemps)} title={'Kylpyhuoneen lämpötila'} />
+          <Plot1 tempData={bathroomTemps} current={getCurrentTemp(bathroomTemps)} title={'Kylpyhuoneen lämpötila'} />
+          <Plot3 tempData1={insideTemps} title1={'Olohuone'} tempData2={kitchenTemps} title2={'Keittiö'} tempData3={bathroomTemps} title3={'Kylpyhuone'} header={'Sisälämpötilat'} />
         </div>
       </div>
     );
