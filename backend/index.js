@@ -1,7 +1,7 @@
 let anturit = require('./anturit.json')
 
 var mqtt = require('mqtt')
-var client  = mqtt.connect('mqtt://10.69.69.70')
+var client  = mqtt.connect('mqtt://192.168.0.25')
 
 const express = require('express')
 
@@ -50,7 +50,7 @@ var temps = []
 var tempname
 
 client.on('connect', () => {
-  client.subscribe('muenster/#', (err) => {
+  client.subscribe('#', (err) => {
     if (!err) {
       client.publish('presence', 'Hello mqtt')
     }
@@ -69,6 +69,13 @@ client.on('message', (topic, message) => {
         TemperatureModel.create({
           name: anturi.name,
           temperature: JSON.parse(message.toString()).temperature,
+          date: new Date()
+        })
+      }
+      else if(anturi.type === "rpi") {
+        TemperatureModel.create({
+          name: anturi.name,
+          temperature: message,
           date: new Date()
         })
       }

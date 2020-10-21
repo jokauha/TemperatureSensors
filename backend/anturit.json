@@ -33,5 +33,20 @@
     "name": "Ulkolämpötila",
     "topic": "muenster/ulko/temponewire",
     "type": "ds18b20"
+  },
+  {
+    "name": "Makuuhuone 2",
+    "topic": "kaarina/mh2/temp",
+    "type": "ds18b20"
+  },
+  {
+    "name": "Kaarina keittiö",
+    "topic": "kaarina/keittio/temp",
+    "type": "ds18b20"
+  },
+  {
+    "name": "Kaarina ulkolämpötila",
+    "topic": "kaarina/28-00000b722911/temp",
+    "type": "rpi"
   }
 ]
