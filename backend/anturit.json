@@ -1,52 +1,62 @@
 [
   {
-  "name": "Keittiö",
-  "topic": "muenster/keittio/temp",
-  "type": "ds18b20"
-  },
-  {
-    "name": "Jääkaappi",
-    "topic": "muenster/keittio/jaakaappitemp",
-    "type": "ds18b20"
-  },
-  {
+    "id": 1,
     "name": "Suihku",
     "topic": "muenster/kylpyhuone/temp",
     "type": "bme280"
   },
   {
-    "name": "Olohuone BME",
-    "topic": "muenster/olohuone/temp",
-    "type": "bme280"
-  },
-  {
+    "id": 2,
     "name": "Olohuone",
     "topic": "muenster/olohuone/onewiretemp",
     "type": "ds18b20"
   },
   {
-    "name": "Ulkolämpötila BME",
-    "topic": "muenster/ulko/temp",
-    "type": "bme280"
-  },
-  {
+    "id": 3,
     "name": "Ulkolämpötila",
     "topic": "muenster/ulko/temponewire",
     "type": "ds18b20"
   },
   {
+    "id": 4,
+    "name": "Keittiö",
+    "topic": "muenster/keittio/temp",
+    "type": "ds18b20"
+  },
+  {
+    "id": 5,
+    "name": "Jääkaappi",
+    "topic": "muenster/keittio/jaakaappitemp",
+    "type": "ds18b20"
+  },
+  {
+    "id": 6,
+    "name": "Ulkolämpötila BME",
+    "topic": "muenster/ulko/temp",
+    "type": "bme280"
+  },
+  {
+    "id": 7,
+    "name": "Olohuone BME",
+    "topic": "muenster/olohuone/temp",
+    "type": "bme280"
+  },
+  {
+    "id": 8,
     "name": "Makuuhuone 2",
     "topic": "kaarina/mh2/temp",
     "type": "ds18b20"
   },
   {
-    "name": "Kaarina keittiö",
-    "topic": "kaarina/keittio/temp",
-    "type": "ds18b20"
-  },
-  {
+    "id": 10,
     "name": "Kaarina ulkolämpötila",
     "topic": "kaarina/28-00000b722911/temp",
     "type": "rpi"
+  },
+  {
+    "id": 11,
+    "name": "Kaarina sisälämpötila",
+    "topic": "kaarina/keittio/temp",
+    "type": "ds18b20"
   }
 ]
