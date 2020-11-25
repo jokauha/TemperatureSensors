@@ -4,6 +4,7 @@ const cors = require('cors')
 const tempsRouter = require('./controllers/temps')
 let anturit = require('./anturit.json')
 var mqtt = require('mqtt')
+const sensorsRouter = require('./controllers/sensors')
 
 const TemperatureModel = require('./models/temperature').TemperatureModel
 
@@ -11,6 +12,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/temps', tempsRouter)
+app.use('/api/sensors', sensorsRouter)
 
 var client = mqtt.connect('mqtt://192.168.0.25')
 client.on('connect', () => {

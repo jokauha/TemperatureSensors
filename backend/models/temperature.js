@@ -31,12 +31,15 @@ var TemperatureModel = sequelize.define('data', {
   timestamps: false
 })
 
-var SensorModel = sequelize.define('anturit', {
+var SensorModel = sequelize.define('sensors', {
     name: DataTypes.STRING
   }, {
     freezeTableName: true,
     timestamps: false
   }
 )
+
+SensorModel.hasMany(TemperatureModel)
+TemperatureModel.belongsTo(SensorModel)
 
 module.exports = { TemperatureModel, SensorModel }

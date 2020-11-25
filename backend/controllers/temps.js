@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op
 const tempsRouter = require('express').Router()
-const TemperatureModel = require('../models/temperature').TemperatureModel
+const { TemperatureModel } = require('../models/temperature')
 
 tempsRouter.get('/', async (req, res) => {
     const temps = await TemperatureModel.findAll()
