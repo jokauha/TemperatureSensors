@@ -14,7 +14,7 @@ app.use(express.json())
 app.use('/api/temps', tempsRouter)
 app.use('/api/sensors', sensorsRouter)
 
-var client = mqtt.connect('mqtt://192.168.100.25')
+var client = mqtt.connect('mqtt://localhost')
 client.on('connect', () => {
     client.subscribe('#', (err) => {
         if (!err) {
