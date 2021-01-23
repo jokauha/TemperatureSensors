@@ -10,6 +10,7 @@ const TemperatureModel = require('./models/temperature').TemperatureModel
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static('build'))
 
 app.use('/api/temps', tempsRouter)
 app.use('/api/sensors', sensorsRouter)
