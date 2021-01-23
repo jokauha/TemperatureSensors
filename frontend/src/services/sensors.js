@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:4001/api/sensors'
+const baseUrl = '/api/sensors'
 
 const getAll = async () => {
     const response = await axios.get(baseUrl)
