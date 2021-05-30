@@ -10,10 +10,10 @@ tempsRouter.get('/', async (req, res) => {
   
 tempsRouter.get('/sensor/:name', async (req, res) => {
     const sensorName = req.params.name
-    const sensorID = anturit.find(sensor => sensor.name === sensorName).id
+    const sensorId = anturit.find(sensor => sensor.name === sensorName).id
     const temps = await TemperatureModel.findAll({
         where: {
-        sensorID: sensorID
+        sensorId: sensorId
         }
     })
     res.json(temps)

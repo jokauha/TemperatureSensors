@@ -16,11 +16,11 @@ function App() {
   const [ mh2TempsKaarina, setMh2TempsKaarina ] = useState([])
   const [ changeToSite, setChangeToSite ] = useState('Münster')
 
-  const tempCollector = ( data, sensorID, setter ) => {  // Kerää lämpötilat
+  const tempCollector = ( data, sensorId, setter ) => {  // Kerää lämpötilat
     var chosenTemps = []
     
     data.forEach((observation) => {
-      if(observation.sensorID === sensorID) {
+      if(observation.sensorId === sensorId) {
         chosenTemps.push({x: Date.parse(observation.date), y: observation.temperature})
       }
     })
