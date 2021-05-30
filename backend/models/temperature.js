@@ -1,8 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './temperatures.sqlite'
-});
+const sequelize = new Sequelize('postgresql://root:root@192.168.100.25:7878/temperatures')
 
 var TemperatureModel = sequelize.define('data', {
   temperature: {
