@@ -17,7 +17,10 @@ var TemperatureModel = sequelize.define('data', {
   sensorID: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    
+    references: {
+      model: 'SensorModel',
+      key: 'id',
+    }
   },
   date: {
     type: DataTypes.DATE,
