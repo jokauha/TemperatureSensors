@@ -34,14 +34,14 @@ client.on('message', (topic, message) => {
         if(anturi.type === "ds18b20") {
           TemperatureModel.create({
             temperature: JSON.parse(message.toString()).temperature,
-            sensorID: anturi.id,
+            sensorId: anturi.id,
             date: new Date()
           })
         }
         else if(anturi.type === "rpi") {
           TemperatureModel.create({
             temperature: message,
-            sensorID: anturi.id,
+            sensorId: anturi.id,
             date: new Date()
           })
         }
@@ -50,7 +50,7 @@ client.on('message', (topic, message) => {
             temperature: JSON.parse(message.toString()).temperature,
             humidity: JSON.parse(message.toString()).humidity,
             pressure: JSON.parse(message.toString()).pressure,
-            sensorID: anturi.id,
+            sensorId: anturi.id,
             date: new Date()})
         }
       }
