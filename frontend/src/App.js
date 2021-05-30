@@ -20,11 +20,10 @@ function App() {
     var chosenTemps = []
     
     data.forEach((observation) => {
-      if(observation.sensorId === sensorId) {
+      if(parseInt(observation.sensorId) === sensorId) {
         chosenTemps.push({x: Date.parse(observation.date), y: observation.temperature})
       }
     })
-    //console.log(outTemps)
     setter(chosenTemps)
   }
 
@@ -32,6 +31,7 @@ function App() {
     const filteredData = data.filter(item => item !== undefined)
     filteredData.sort((a,b) => a.date-b.date)
     if(filteredData[filteredData.length - 1] !== undefined) {
+      console.log(filteredData[filteredData.length - 1].y)
       return filteredData[filteredData.length - 1].y
     }
   }
