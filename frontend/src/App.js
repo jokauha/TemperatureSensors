@@ -18,12 +18,13 @@ function App() {
 
   const tempCollector = ( data, sensorId, setter ) => {  // Kerää lämpötilat
     var chosenTemps = []
-    
+
     data.forEach((observation) => {
       if(parseInt(observation.sensorId) === sensorId) {
         chosenTemps.push({x: Date.parse(observation.date), y: observation.temperature})
       }
     })
+    chosenTemps.sort((a,b) => a.x-b.x)
     setter(chosenTemps)
   }
 
